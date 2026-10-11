@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#10111d">
-  <meta name="description" content="777개 실제 당첨 구성으로 즐기는 위스키 랜덤박스 시뮬레이션. 1회 79,000원(가상), 모바일 지원.">
+  <meta name="description" content="777개 랜덤박스 게임. 희귀 당첨 연출, 사용자 설정 가정가로 손익 계산, 결과 이미지 공유. 실제 구매·결제 없음.">
   <meta property="og:type" content="website">
   <meta property="og:title" content="위스키 랜덤박스 시뮬레이터 🎁">
   <meta property="og:description" content="777개 구성 그대로! 7.9만 원짜리 랜덤박스를 5개 뽑으면 어떻게 될까?">
@@ -86,6 +86,39 @@
     .toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);background:#f0d49b;color:#211d20;border-radius:99px;padding:11px 20px;font-size:12px;font-weight:900;box-shadow:0 8px 20px #0008;z-index:100;max-width:90%;text-align:center}
     @media(max-width:510px){.container{padding:10px 11px 38px}.hero{padding:34px 12px 22px}.section{padding:14px}.boxes{gap:6px}.boxbtn{min-height:107px;padding:7px 3px}.boxbtn .caption{font-size:10px}.boxbtn.open .caption{font-size:9px}.stats{gap:5px}.stat .num{font-size:16px}.stat .small{font-size:10px}.buyline strong{font-size:22px}}
     @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}}
+  /* Community simulator add-ons: valuation, image sharing, rare reveal */
+.value-panel{margin-top:18px;padding:16px;border:1px solid #554568;background:linear-gradient(125deg,#302439,#1c2530);border-radius:16px}
+.value-head{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.value-head h3{font-size:16px;margin:0;color:#ffe0a0}
+.value-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:12px}
+.value-item{padding:11px 6px;background:#141b28a8;border:1px solid #514355;border-radius:11px;text-align:center;min-width:0}
+.value-item span{display:block;color:#b9acc0;font-size:11px}
+.value-item strong{display:block;margin-top:5px;font-size:clamp(12px,2.2vw,20px);overflow-wrap:anywhere}
+.value-item strong.positive{color:#8addaf}.value-item strong.negative{color:#ffadbd}
+.value-note{font-size:11px;color:#b9b1bf;line-height:1.65;margin:10px 0 0}
+.price-guide{margin:16px 0 0;padding:15px 18px;background:#1b1c2a;border:1px solid #3d3b54;border-radius:16px}
+.price-guide>summary{color:#ffe0a0}
+.price-row{display:grid;grid-template-columns:minmax(0,1fr) 126px;align-items:center;gap:9px;border-bottom:1px solid #363548;padding:9px 0}
+.price-row label{font-size:12px;line-height:1.45}.price-row input{width:100%;min-width:0;padding:9px;border-radius:9px;border:1px solid #5c5c73;background:#121522;color:#f5f1e7;font:inherit;text-align:right}
+.price-actions{display:flex;justify-content:flex-end;margin-top:12px}
+.export-actions{display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-end;margin-top:9px}
+.export-actions button{border-radius:11px;border:1px solid #b48d50;background:#433426;color:#ffe4ae;padding:10px 13px;font-size:12px;font-weight:850}
+.rare-overlay{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;z-index:500;isolation:isolate;background:#080710d9;padding:16px;animation:fade-in .22s ease both;overflow:hidden}
+.rare-overlay.hidden{display:none!important}
+.rare-pop{position:relative;z-index:2;text-align:center;background:radial-gradient(ellipse at top,#55354e,#1e1b2b 78%);border:2px solid #ecc47d;border-radius:25px;padding:34px 22px;max-width:460px;width:100%;box-shadow:0 0 85px #fbc77538,0 16px 60px #0009;animation:pop-in .48s cubic-bezier(.19,1,.22,1) both}
+.rare-pop.jackpot{background:radial-gradient(ellipse at top,#67441f,#211c2c 76%);box-shadow:0 0 105px #ffcd6388,0 16px 60px #000a}
+.rare-pop .glow-icon{font-size:70px;line-height:1.3;display:block;filter:drop-shadow(0 0 20px #ffde99)}
+.rare-pop .rare-tag{color:#f6cc87;font-size:12px;font-weight:900;letter-spacing:.22em}
+.rare-pop h2{font-size:clamp(23px,6vw,33px);margin:12px 0 8px;color:#ffebc8;line-height:1.25}
+.rare-pop p{font-size:14px;color:#e6d9e6;margin:9px 0 24px;overflow-wrap:anywhere}
+.rare-pop button{width:100%;border:0;border-radius:12px;padding:14px;background:#f7cf87;color:#261a13;font-weight:900}
+.confetti{position:absolute;top:-10%;left:var(--x);width:var(--s);height:calc(var(--s)*1.8);background:var(--c);transform:rotate(var(--r));opacity:0;animation:fall var(--t) linear var(--d) forwards;z-index:1;border-radius:2px}
+@keyframes fall{0%{transform:translateY(0) rotate(0);opacity:1}85%{opacity:1}100%{transform:translateY(112vh) rotate(750deg);opacity:0}}
+@keyframes pop-in{from{transform:scale(.66) translateY(40px);opacity:0}to{transform:scale(1) translateY(0);opacity:1}}
+@keyframes fade-in{from{opacity:0}to{opacity:1}}
+@media(max-width:510px){.value-grid{gap:5px}.value-item{padding:10px 4px}.value-item span{font-size:10px}.price-row{grid-template-columns:minmax(0,1fr) 107px}}
+@media(prefers-reduced-motion:reduce){.rare-overlay,.rare-pop,.confetti{animation:none!important}.confetti{display:none}}
+
   </style>
 </head>
 <body>
@@ -290,7 +323,7 @@
     async function share(){
       if(!complete()||!state.game.length)return;
       const lines=['🎁 위스키 랜덤박스 '+state.game.length+'개 결과','가상 지출: '+money(state.game.length*UNIT),...state.game.map((id,i)=>(i+1)+'. '+PRIZES[id].name)];
-      if(location.protocol.startsWith('http'))lines.push('나도 해보기: '+location.origin+location.pathname);
+      // 공유 텍스트에는 호스팅 URL이나 개인 GitHub 사용자명을 넣지 않습니다.
       const str=lines.join('\n');
       try{
         if(navigator.share){await navigator.share({title:'위스키 랜덤박스 결과',text:str});return;}
@@ -300,13 +333,166 @@
     }
     document.querySelectorAll('.amount').forEach(b=>b.addEventListener('click',()=>{qty=Number(b.dataset.qty);render();}));
     el('buy').addEventListener('click',buy);
-    el('openAll').addEventListener('click',revealAll);
+    el('openAll').addEventListener('click',()=>revealAll());
     el('share').addEventListener('click',share);
     el('reset').addEventListener('click',()=>{
       if(!confirm('지금까지의 가상 구매와 당첨 기록, 개인 재고를 모두 초기화할까요?'))return;
       state=fresh();save();render();notify('777개 재고가 새로 채워졌어요.');
     });
     render();
+
+/* Simulation add-ons. All valuations are user-editable fictional assumptions, NOT real quotes. */
+(() => {
+  'use strict';
+  const PRICE_KEY='whisky_box_price_assumptions_v2';
+  const TRACK_KEY='whisky_box_tracked_results_v2';
+  // Sample game assumptions only. These are not verified market prices.
+  const examples=[1200000,90000,90000,200000,450000,250000,650000,700000,850000,null,79000,100000];
+  const read=(key)=>{try{return JSON.parse(localStorage.getItem(key));}catch(e){return null;}};
+  const write=(key,val)=>{try{localStorage.setItem(key,JSON.stringify(val));}catch(e){/* optional persistence */}};
+  const validPrice=n=>n===null||(Number.isInteger(n)&&n>=0&&n<=1000000000);
+  const p=read(PRICE_KEY);
+  let prices=Array.isArray(p)&&p.length===PRIZES.length&&p.every(validPrice)?p:examples.slice();
+  let tracked=read(TRACK_KEY);
+  if(!tracked||!Array.isArray(tracked.wins)||tracked.wins.length!==PRIZES.length||!tracked.wins.every(n=>Number.isInteger(n)&&n>=0)){
+    tracked={wins:PRIZES.map((_,i)=>state.game.filter((id,j)=>id===i&&state.revealed[j]).length)};
+  }
+  const knownWins=()=>tracked.wins.reduce((a,b)=>a+b,0);
+  function summary(){
+    let total=0,unknown=0;
+    prices.forEach((p,i)=>{if(p===null)unknown+=tracked.wins[i];else total+=p*tracked.wins[i];});
+    return {total,cost:knownWins()*UNIT,profit:total-knownWins()*UNIT,unknown,count:knownWins()};
+  }
+  // DOM additions leave the existing game and original persistent state intact.
+  const stats=document.querySelector('.stats');
+  const panel=document.createElement('section');panel.className='value-panel';
+  panel.innerHTML='<div class="value-head"><h3>💸 누적 가상 손익</h3><span class="helper">개봉한 박스 기준</span></div><div class="value-grid"><div class="value-item"><span>평가액 합계</span><strong id="estimatedReturn">-</strong></div><div class="value-item"><span>해당 구매비용</span><strong id="estimatedCost">-</strong></div><div class="value-item"><span>추정 순손익</span><strong id="netProfit">-</strong></div></div><p class="value-note" id="valueNote">※ 기본 가정가는 게임용 임의 예시입니다. 실제 판매가·중고 시세가 아닙니다. 아래에서 직접 수정할 수 있습니다.</p>';
+  stats.after(panel);
+  const editor=document.createElement('details');editor.className='price-guide';
+  const exp='<summary>✏️ 바틀별 가정 가격 수정하기 (게임용)</summary><p class="value-note">기본값은 사실 확인된 시세가 아닌 임의 예시 금액입니다. 본인이 생각하는 가치를 입력해야 그 기준으로 손익이 계산됩니다. 히든 컬렉션은 가치를 알 수 없어 미설정입니다.</p><div id="priceRows"></div><div class="price-actions"><button class="ghost" type="button" id="restorePrices">임의 예시 가격으로 되돌리기</button></div>';
+  editor.innerHTML=exp;
+  document.querySelector('footer').before(editor);
+  const priceRows=document.getElementById('priceRows');
+  PRIZES.forEach((prize,i)=>{
+    const row=document.createElement('div');row.className='price-row';
+    const label=document.createElement('label');label.textContent=prize.short;label.htmlFor='assumePrice'+i;
+    const inp=document.createElement('input');inp.id='assumePrice'+i;inp.type='number';inp.min='0';inp.max='1000000000';inp.step='1000';inp.inputMode='numeric';inp.placeholder='미설정';inp.value=prices[i]===null?'':prices[i];
+    inp.addEventListener('input',()=>{
+      if(inp.value.trim()==='')prices[i]=null;
+      else if(validPrice(Number(inp.value)))prices[i]=Number(inp.value);
+      else return;
+      write(PRICE_KEY,prices);renderExtras();
+    });
+    row.append(label,inp);priceRows.append(row);
+  });
+  document.getElementById('restorePrices').addEventListener('click',()=>{
+    prices=examples.slice();write(PRICE_KEY,prices);
+    priceRows.querySelectorAll('input').forEach((inp,i)=>{inp.value=prices[i]===null?'':prices[i];});renderExtras();notify('게임용 가정 가격으로 초기화했습니다.');
+  });
+  const actionWrap=document.createElement('div');actionWrap.className='export-actions hidden';actionWrap.id='imageActions';
+  actionWrap.innerHTML='<button type="button" id="savePng">🖼 결과 이미지 저장</button><button type="button" id="sharePng">📤 이미지 공유</button>';
+  document.querySelector('#game .actions').after(actionWrap);
+  const overlay=document.createElement('div');overlay.id='rareOverlay';overlay.className='rare-overlay hidden';overlay.setAttribute('role','dialog');overlay.setAttribute('aria-modal','true');overlay.setAttribute('aria-label','희귀 위스키 당첨');
+  overlay.innerHTML='<div class="rare-pop" id="rarePop"><span class="glow-icon" id="rareIcon">🏆</span><div class="rare-tag" id="rareTag">SPECIAL DRAW</div><h2>희귀 당첨!</h2><p id="rareBottle"></p><button type="button" id="closeRare">결과 확인하기</button></div>';
+  document.body.append(overlay);
+  function closeOverlay(){overlay.classList.add('hidden');overlay.querySelectorAll('.confetti').forEach(e=>e.remove());}
+  document.getElementById('closeRare').addEventListener('click',closeOverlay);
+  overlay.addEventListener('click',e=>{if(e.target===overlay)closeOverlay();});
+  window.addEventListener('keydown',e=>{if(e.key==='Escape'&&!overlay.classList.contains('hidden'))closeOverlay();});
+  function celebrate(id){
+    if(id>=10)return;
+    const grand=[0,4,5,6,7,8,9].includes(id);
+    const pop=document.getElementById('rarePop');pop.classList.toggle('jackpot',grand);
+    pop.querySelector('h2').textContent=grand?'🎉 초특급 당첨!':'🏆 특별 당첨!';
+    document.getElementById('rareTag').textContent=grand?'JACKPOT · TOP PRIZE':'SPECIAL DRAW';
+    document.getElementById('rareIcon').textContent=grand?'👑':'🏆';
+    document.getElementById('rareBottle').textContent=PRIZES[id].name+' · 전체 '+PRIZES[id].qty+'개 ('+(PRIZES[id].qty/ORIGINAL*100).toFixed(2)+'%)';
+    overlay.querySelectorAll('.confetti').forEach(e=>e.remove());
+    if(!matchMedia('(prefers-reduced-motion: reduce)').matches){
+      for(let i=0;i<(grand?90:40);i++){
+        const dot=document.createElement('i');dot.className='confetti';
+        dot.style.setProperty('--x',(Math.random()*100)+'%');dot.style.setProperty('--s',(5+Math.random()*9)+'px');
+        dot.style.setProperty('--t',(2.3+Math.random()*2.4)+'s');dot.style.setProperty('--d',(Math.random()*0.45)+'s');
+        dot.style.setProperty('--c',['#ffdf8f','#f6aab9','#f9f2e3','#a5e2cc','#e3b5f6'][i%5]);
+        overlay.appendChild(dot);
+      }
+    }
+    overlay.classList.remove('hidden');document.getElementById('closeRare').focus();
+  }
+  function addWin(id){tracked.wins[id]++;write(TRACK_KEY,tracked);}
+  const oldReveal=reveal;
+  reveal=function(i){if(state.revealed[i])return;const id=state.game[i];oldReveal(i);addWin(id);renderExtras();celebrate(id);};
+  const oldRevealAll=revealAll;
+  revealAll=function(){
+    const pending=state.game.filter((id,i)=>!state.revealed[i]);
+    oldRevealAll();pending.forEach(addWin);renderExtras();
+    const special=pending.filter(id=>id<10).sort((a,b)=>PRIZES[a].qty-PRIZES[b].qty);
+    if(special.length)celebrate(special[0]);
+  };
+  const oldRender=render;
+  render=function(){oldRender();renderExtras();};
+  function renderExtras(){
+    const x=summary();
+    document.getElementById('estimatedReturn').textContent=money(x.total)+(x.unknown?' + 미평가':'');
+    document.getElementById('estimatedCost').textContent=money(x.cost);
+    const profit=document.getElementById('netProfit');
+    profit.textContent=x.unknown?'미평가 '+x.unknown+'건':(x.profit>=0?'+':'−')+money(Math.abs(x.profit));
+    profit.classList.toggle('positive',!x.unknown&&x.profit>=0);
+    profit.classList.toggle('negative',!x.unknown&&x.profit<0);
+    document.getElementById('valueNote').textContent='※ 사용자가 설정한 가정가로 계산 · 기록된 '+x.count+'개 개봉분 기준. 가격 미설정 상품은 손익 미산정. 이전 버전의 과거 당첨 내역은 복원할 수 없습니다.';
+    actionWrap.classList.toggle('hidden',!state.game.length||!complete());
+  }
+  function roundRect(ctx,x,y,w,h,r){ctx.beginPath();if(ctx.roundRect){ctx.roundRect(x,y,w,h,r);}else{const z=Math.min(r,w/2,h/2);ctx.moveTo(x+z,y);ctx.lineTo(x+w-z,y);ctx.quadraticCurveTo(x+w,y,x+w,y+z);ctx.lineTo(x+w,y+h-z);ctx.quadraticCurveTo(x+w,y+h,x+w-z,y+h);ctx.lineTo(x+z,y+h);ctx.quadraticCurveTo(x,y+h,x,y+h-z);ctx.lineTo(x,y+z);ctx.quadraticCurveTo(x,y,x+z,y);ctx.closePath();}}
+  function drawReport(){
+    if(!state.game.length||!complete())throw Error('개봉을 완료해 주세요.');
+    const c=document.createElement('canvas');c.width=1080;c.height=1470;const g=c.getContext('2d');
+    const bg=g.createLinearGradient(0,0,1050,1470);bg.addColorStop(0,'#3f2c48');bg.addColorStop(.6,'#171927');bg.addColorStop(1,'#101421');g.fillStyle=bg;g.fillRect(0,0,1080,1470);
+    g.fillStyle='#f6d58c';g.font='bold 30px sans-serif';g.textAlign='center';g.fillText('WHISKY LUCKY BOX',540,95);
+    g.font='bold 64px sans-serif';g.fillStyle='#fff2d5';g.fillText('위스키 랜덤박스',540,189);
+    g.fillStyle='#c9b7d2';g.font='29px sans-serif';g.fillText(state.game.length+'개 개봉 결과  ·  비공식 가상 시뮬레이터',540,244);
+    roundRect(g,65,296,950,174,22);g.fillStyle='#ffffff11';g.fill();g.strokeStyle='#d7b77d';g.stroke();
+    g.textAlign='left';g.font='26px sans-serif';g.fillStyle='#d2c5cc';g.fillText('이번 회차 가상 지출',100,353);
+    g.font='bold 42px sans-serif';g.fillStyle='#ffe6a5';g.fillText(money(state.game.length*UNIT),100,418);
+    const roundValue=state.game.reduce((s,id)=>s+(prices[id]??0),0);
+    const notPriced=state.game.filter(id=>prices[id]===null).length;
+    g.textAlign='right';g.fillStyle='#d2c5cc';g.font='26px sans-serif';g.fillText(notPriced?'당첨 평가액 (일부 미설정)':'당첨 평가액 (가정가)',980,353);
+    g.font='bold 40px sans-serif';g.fillStyle='#a4e9c6';g.fillText(money(roundValue)+(notPriced?' + ?':''),980,418);
+    g.textAlign='left';g.font='bold 28px sans-serif';g.fillStyle='#f9db97';g.fillText('🎁 당첨 목록',88,535);
+    state.game.forEach((id,i)=>{
+      const y=555+i*72;roundRect(g,64,y,952,62,12);g.fillStyle=id<10?'#4c3834':'#292d3b';g.fill();
+      g.font='bold 24px sans-serif';g.fillStyle='#f6cb78';g.fillText(String(i+1).padStart(2,'0'),91,y+41);
+      g.font='25px sans-serif';g.fillStyle='#f3edf1';
+      let s=PRIZES[id].name;while(g.measureText(s).width>690&&s.length>3)s=s.slice(0,-2)+'…';g.fillText(s,148,y+41);
+      if(id<10){g.textAlign='right';g.font='bold 21px sans-serif';g.fillStyle='#ffd58d';g.fillText('SPECIAL',978,y+41);g.textAlign='left';}
+    });
+    g.fillStyle='#c7bccc';g.font='25px sans-serif';g.textAlign='center';
+    g.fillText('이번 회차 추정 손익: '+(notPriced?'평가 불가 (가격 미설정)':((roundValue-state.game.length*UNIT)>=0?'+':'−')+money(Math.abs(roundValue-state.game.length*UNIT))),540,1371);
+    g.fillStyle='#9c9bae';g.font='20px sans-serif';g.fillText('평가액은 게임용 임의 가정가이며 실제 판매 시세가 아닙니다.',540,1420);
+    return c;
+  }
+  const asBlob=c=>new Promise((resolve,reject)=>c.toBlob(b=>b?resolve(b):reject(Error('이미지 저장 실패')),'image/png'));
+  function download(blob){const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='whisky-luckybox-result.png';document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),60000);}
+  async function exportPng(shareMode){
+    try{
+      const blob=await asBlob(drawReport());
+      if(shareMode&&navigator.share&&navigator.canShare){
+        const file=new File([blob],'whisky-luckybox-result.png',{type:'image/png'});
+        if(navigator.canShare({files:[file]})){
+          try{await navigator.share({files:[file],title:'위스키 랜덤박스 결과'});return;}
+          catch(e){if(e.name==='AbortError')return;}
+        }
+      }
+      download(blob);notify(shareMode?'이미지를 저장했어요. 공유할 곳에 첨부하세요.':'결과 이미지를 저장했어요.');
+    }catch(e){notify('이미지를 만들지 못했어요. 다른 브라우저로 시도해 주세요.');}
+  }
+  document.getElementById('savePng').addEventListener('click',()=>exportPng(false));
+  document.getElementById('sharePng').addEventListener('click',()=>exportPng(true));
+  document.getElementById('reset').addEventListener('click',()=>{
+    if(state.purchases===0&&state.opened===0){tracked={wins:PRIZES.map(()=>0)};write(TRACK_KEY,tracked);renderExtras();}
+  });
+  renderExtras();
+})();
+
   </script>
 </body>
 </html>
